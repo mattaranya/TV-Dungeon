@@ -16,6 +16,7 @@ namespace WebApplication1
         public string cpassword = "";
         public string email = "";
 
+
         protected void Page_Load(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(Connect.Connecting);
@@ -31,7 +32,7 @@ namespace WebApplication1
                 if (message1 == "")
                 {
                     AddUser(username, password, email, con);
-                    Response.Redirect("WebForm3.aspx");
+                    Response.Redirect("WebForm1.aspx");
                 }
             }
             con.Close();
