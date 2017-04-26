@@ -11,30 +11,36 @@ namespace WebApplication1
     public partial class WebForm2 : System.Web.UI.Page
     {
         public string message1 = "";
+        public string username = "";
+        public string password = "";
+        public string cpassword = "";
+        public string email = "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(Connect.Connecting);
-            string username = Request.Form["username"];
-            string password = Request.Form["password"];
-            string cpassword = Request.Form["cpassword"];
-            string email = Request.Form["email"];
-            //con.Open();
+            username = Request.Form["username"];
+            password = Request.Form["password"];
+            cpassword = Request.Form["cpassword"];
+            email = Request.Form["email"];
+
+            con.Open();
             if (Request.HttpMethod == "POST")
             {
                 message1 = MessageByData(username, password, cpassword, email, con);
                 if (message1 == "")
                 {
-                    AddUser(username, password, email,con);
+                    AddUser(username, password, email, con);
                     Response.Redirect("WebForm3.aspx");
                 }
-            }    
-            //con.Close();
+            }
+            con.Close();
         }
 
         private void AddUser(string username, string password, string email, SqlConnection sql)//Creates New User
         {
             SqlCommand command = sql.CreateCommand();
-            command.CommandText = String.Format("INSERT INTO Users VALUES ('{0}', '{1}', '{2}');",username,password,email);
+            command.CommandText = String.Format("INSERT INTO Users VALUES ('{0}', '{1}', '{2}');", username, password, email);
             command.ExecuteNonQuery();
         }
 
@@ -56,7 +62,9 @@ namespace WebApplication1
             SqlCommand command = sql.CreateCommand();
             command.CommandText = String.Format("SELECT Username FROM Users WHERE Username='{0}';", u);
             SqlDataReader reader = command.ExecuteReader();
-            return reader.Read();
+            bool output = reader.Read();
+            reader.Close();
+            return output;
         }
 
         private bool DoesAtExists(string e)//locates '@'s

@@ -11,28 +11,22 @@ namespace WebApplication1
     public partial class WebForm1 : System.Web.UI.Page
     {
         public string message = "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(Connect.Connecting);
             string username = Request.Form["username"];
             string password = Request.Form["password"];
-            // con.Open();
+
+            con.Open();
             if (Request.HttpMethod=="POST")
-            {
-                if (!EverythingsGood(username, password))
-                {
+                if (EverythingsBad(username, password))
                     message = "Your Password's too short or it's identicle to your Username";
-                }
                 else if (!VerifyUser(username, password, con))
-                {
                     message = "Your Username or Password don't match";
-                }
                 else
-                {
                     Response.Redirect("WebForm3.aspx");
-                }
-            }    
-            // con.Close();
+            con.Close();
         }
 
         private bool VerifyUser(string username, string password, SqlConnection con)//confirms user exists
@@ -47,13 +41,9 @@ namespace WebApplication1
             return false;
         }
 
-        private bool EverythingsGood(string username, string password)//checks if passwords are valid
+        private bool EverythingsBad(string username, string password)//checks if passwords are valid
         {
-            if (password.Length < 8 && username==password)
-            {
-                return false;
-            }
-            return true;
+            return password.Length < 8 && username == password;
         }
     }
 }

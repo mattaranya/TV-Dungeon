@@ -19,17 +19,17 @@ PLEASE SIGN UP HERE:
 <p>
 (Notice: Passwords shoul contain more than 8 characters and usernames cannot be identicle to their passwords).
 </p>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" method="post">
     <div>Username:</div>
-    <div><input id="username" type="text"/></div>
+    <div><input id="username" name="username" type="text" value="<%=username %>"/></div>
     <div>Password:</div>
-    <div><input id="password" type="password"/></div>
+    <div><input id="password" name="password" type="password"/></div>
     <div>Confirm Password:</div>
-    <div><input id="cpassword" type="password"/></div>
+    <div><input id="cpassword" name="cpassword" type="password"/></div>
     <div>E-Mail:</div>
-    <div><input id="email" type="text"/></div>
+    <div><input id="email" name="email" type="text" value="<%=email %>"/></div>
     <input type="submit" id="sub" />
-     <%=message1 %>
+    <%=message1 %>
     </form>
 </body>
 </html>
