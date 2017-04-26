@@ -9,10 +9,32 @@ namespace WebApplication1
 {
     public partial class WebForm3 : System.Web.UI.Page
     {
-        //THIS WEBPAGE IS FOR NODE OF ARTICLES
+        public string tablink1 = "";
+        public string tablink2 = "";
+        public string tablink3 = "";
+        public string posts = "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void getAction(object sender, EventArgs e)
+        {
+            tablink1 = "active";
+            posts = "Hey";
+        }
+
+        protected void getComedy(object sender, EventArgs e)
+        {
+            tablink2 = "active";
+            posts = "Sup";
+        }
+
+        protected void getDrama(object sender, EventArgs e)
+        {
+            tablink3 = "active";
+            posts = "Lel";
         }
     }
 }

@@ -16,7 +16,6 @@ namespace WebApplication1
         public string cpassword = "";
         public string email = "";
 
-
         protected void Page_Load(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(Connect.Connecting);

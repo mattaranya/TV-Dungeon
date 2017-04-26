@@ -4,13 +4,30 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>TV Dungeon Main Page
+    </title>
+
+    <link rel="stylesheet" type="text/css" href="Tabs.css" />
 </head>
 <body>
-    <form id="form1" runat="server">
-    <div>
-    
-    </div>
+    <h1>Welcome to TV dungeon</h1>
+
+    <br />
+    <br />
+
+    <form id="form1" class="tab" runat="server" method="post">
+        <button class="tablinks <%=tablink1 %>" runat="server" onserverclick="getAction">
+            Action
+        </button>
+        <button class="tablinks <%=tablink2 %>" runat="server" onserverclick="getComedy">
+            Comedy
+        </button>
+        <button class="tablinks <%=tablink3 %>" runat="server" onserverclick="getDrama">
+            Drama
+        </button>
     </form>
+    <div class="tabcontent">
+        <%=posts %>
+    </div>
 </body>
 </html>
