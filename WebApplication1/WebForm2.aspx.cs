@@ -23,7 +23,7 @@ namespace WebApplication1
             password = Request.Form["password"];
             cpassword = Request.Form["cpassword"];
             email = Request.Form["email"];
-
+            
             con.Open();
             if (Request.HttpMethod == "POST")
             {
@@ -31,6 +31,8 @@ namespace WebApplication1
                 if (message1 == "")
                 {
                     AddUser(username, password, email, con);
+                    Session["username"] = username;
+                    Session["email"] = email;
                     Response.Redirect("WebForm1.aspx");
                 }
             }
@@ -81,7 +83,7 @@ namespace WebApplication1
 
         private bool EverythingsGood(string username, string password)//checks if passwords are valid
         {
-            if (password.Length < 8 && username == password)
+            if (password.Length < 8 || username == password)
             {
                 return false;
             }

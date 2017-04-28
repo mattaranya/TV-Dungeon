@@ -19,13 +19,21 @@ namespace WebApplication1
             string password = Request.Form["password"];
 
             con.Open();
-            if (Request.HttpMethod=="POST")
+            if (Request.HttpMethod == "POST")
+            {
+                Session["username"] = username;
                 if (EverythingsBad(username, password))
+                {
                     message = "Your Password's too short or it's identicle to your Username";
-                else if (!VerifyUser(username, password, con))
+                }
+                else if (!VerifyUser(username, password, con)) {
                     message = "Your Username or Password don't match";
+                }
                 else
+                {
                     Response.Redirect("WebForm3.aspx");
+                }    
+            }
             con.Close();
         }
 
@@ -43,7 +51,11 @@ namespace WebApplication1
 
         private bool EverythingsBad(string username, string password)//checks if passwords are valid
         {
-            return password.Length < 8 && username == password;
+            if (password.Length < 8 || username == password)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
