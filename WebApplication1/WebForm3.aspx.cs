@@ -13,10 +13,11 @@ namespace WebApplication1
         public string tablink2 = "";
         public string tablink3 = "";
         public string posts = "";
+        public string currentUser = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            currentUser = Session["username"].ToString();
         }
 
         protected void getAction(object sender, EventArgs e)

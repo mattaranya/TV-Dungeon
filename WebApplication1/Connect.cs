@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace WebApplication1
 {
@@ -9,6 +11,14 @@ namespace WebApplication1
     {
         public static string Connecting = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"|DataDirectory|\\Database1.mdf\";Integrated Security=True";
 
-        //Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\שרון\Documents\GitHub\TV-Dungeon\WebApplication1\App_Data\Database1.mdf;Integrated Security=True
+        public static DataTable ExecuteDataTable(string sql)//creates DataTable visible
+        {
+            SqlConnection conn = new SqlConnection(Connecting);
+            conn.Open();
+            DataTable dt = new DataTable();
+            SqlDataAdapter tableAdapter = new SqlDataAdapter(sql,conn);
+            tableAdapter.Fill(dt);
+            return dt;
+        }
     }
 }

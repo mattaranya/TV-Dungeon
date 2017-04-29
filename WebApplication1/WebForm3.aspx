@@ -11,23 +11,24 @@
 </head>
 <body>
     <h1>Welcome to TV dungeon</h1>
-
+    <div>You are logged in as <%=currentUser %>. Not you? <a href="WebForm1.aspx">Sign in here</a>.</div>
     <br />
     <br />
 
     <form id="form1" class="tab" runat="server" method="post">
-        <button class="tablinks <%=tablink1 %>" runat="server" onserverclick="getAction">
+        <button class="tablinks " runat="server" onserverclick="getAction">
             Action
         </button>
-        <button class="tablinks <%=tablink2 %>" runat="server" onserverclick="getComedy">
+        <button class="tablinks " runat="server" onserverclick="getComedy">
             Comedy
         </button>
-        <button class="tablinks <%=tablink3 %>" runat="server" onserverclick="getDrama">
+        <button class="tablinks " runat="server" onserverclick="getDrama">
             Drama
         </button>
     </form>
     <div class="tabcontent">
         <%=posts %>
     </div>
+    Like what you see? <a href="WebForm4.aspx">Create a Post!</a>
 </body>
 </html>
