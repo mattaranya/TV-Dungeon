@@ -5,8 +5,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+<<<<<<< HEAD
 using System.Data;
 //ddddd
+=======
+>>>>>>> origin/master
 
 
 namespace WebApplication1
@@ -30,7 +33,18 @@ namespace WebApplication1
                 Content = Request.Form["postcontent"];
                 Tag = Request.Form["tags"];
                 Time = DateTime.Now;
+<<<<<<< HEAD
                 CreatePost(con, Headline, Time, Content, Tag);
+=======
+                if (!NoNullContent(Headline,Content,Tag))
+                {
+                    CreatePost(con, Headline, Time, Content, Tag);
+                }
+                else
+                {
+                    Response.Write("One of the elements is missing. Fill it to continue");
+                }
+>>>>>>> origin/master
             }
             con.Close();
         }
@@ -42,13 +56,21 @@ namespace WebApplication1
             command.ExecuteNonQuery();
         }
 
+<<<<<<< HEAD
        /* private bool NoNullContent(string headline, string content, string tag)
+=======
+        private bool NoNullContent(string headline, string content, string tag)
+>>>>>>> origin/master
         {
             if (headline==null || content==null || tag==null)
             {
                 return true;
             }
             return false;
+<<<<<<< HEAD
         } */
+=======
+        }
+>>>>>>> origin/master
     }
 }

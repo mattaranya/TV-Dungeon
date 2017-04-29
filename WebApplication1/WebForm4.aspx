@@ -14,8 +14,13 @@
     <h3>Saw something you like on TV? Share it with us!</h3>
     <h4>(Notice: Posts must have a Headline, Content & Tag. A post without those elements could NOT be posted).</h4>
     <div>You are logged in as <%=currentUser %>. Not you? <a href="WebForm1.aspx">Sign in here</a>.</div><br />
+<<<<<<< HEAD
     <form id="form1" runat="server">
         <div><input id="headline" name="headline" type="text" value="Headline"  /></div><br />
+=======
+    <form id="form1" runat="server" onclick="noNull(headline,postcontent,tags)">
+        <div><input id="headline" name="headline" type="text" value="Headline" /></div><br />
+>>>>>>> origin/master
         <div><textarea rows="25" cols="100" id="postcontent" name="postcontent" >Write your post content here...</textarea></div>
         <br /><div><b>Choose a Tag (Required)</b></div>
         <div>
