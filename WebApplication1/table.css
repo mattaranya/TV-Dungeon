@@ -1,0 +1,10 @@
+﻿div.table {
+        display: table;
+    }
+form.tr, div.tr {
+    display: table-row;
+}
+
+span.td {
+    display: table-cell;
+}

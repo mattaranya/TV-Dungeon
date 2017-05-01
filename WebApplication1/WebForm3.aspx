@@ -10,11 +10,13 @@
     <link rel="stylesheet" type="text/css" href="Tabs.css" />
 </head>
 <body>
-    <h1>Welcome to TV dungeon</h1>
+    <h1>Welcome to TV Dungeon</h1>
     <div>You are logged in as <%=currentUser %>. Not you? <a href="WebForm1.aspx">Sign in here</a>.</div>
+    <div><%=goBackAdmin %></div>
+    <div><a href="WebForm7.aspx">Manage your account</a></div>
     <br />
-    <br />
-
+    <div><big>Pick your Poison: </big>
+    (Like what you see? <a href="WebForm4.aspx">Create a Post!</a>)</div>
     <form id="form1" class="tab" runat="server" method="post">
         <button class="tablinks " runat="server" onserverclick="getAction">
             Action
@@ -29,6 +31,6 @@
     <div class="tabcontent">
         <%=posts %>
     </div>
-    Like what you see? <a href="WebForm4.aspx">Create a Post!</a>
+    
 </body>
 </html>

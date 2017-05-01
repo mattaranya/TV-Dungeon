@@ -6,6 +6,8 @@
 <head runat="server">
     <title>Sign In
     </title>
+    <script src="CheckPost.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="page1.css" />
 </head>
 
 <body>
@@ -13,15 +15,18 @@
 
     <h3>Sign In here:</h3>
 
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" onsubmit="return checkForm1();">
         <div>Username:</div>
         <div>
-            <input id="username" name="username" type="text" /></div>
+            <input id="username" name="username" type="text" value="<%=Session["username"] %>" />
+        </div>
         <div>Password:</div>
         <div>
-            <input id="password" name="password" type="password" /></div>
-        <input type="submit" id="sub" />
-        <%=message %>
+            <input id="password" name="password" type="password" />
+        </div><br />
+        <center><input type="submit" id="submit" value="Sign In" /></center>
+        <div id="message"></div>
+        <div><%=message %></div>
     </form>
 
     <div>

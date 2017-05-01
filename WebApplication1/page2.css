@@ -1,0 +1,26 @@
+﻿body {
+    background-color:darkkhaki;
+}
+h1{
+    text-align:center;
+    font-family:'Courier New';
+    color:wheat;
+    border:outset;
+}
+h3{
+    font-family:'Franklin Gothic';
+}
+a:hover{
+    color:darkgoldenrod;
+}
+h4{
+    font-family:'Cambria Math';
+}
+div{
+    color:darkred;
+    font-family:Century;
+}
+textarea{
+    font-family:'Guttman Frank';
+}
+

@@ -10,7 +10,6 @@ namespace WebApplication1
     public class Connect
     {
         public static string Connecting = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"|DataDirectory|\\Database1.mdf\";Integrated Security=True";
-
         public static DataTable ExecuteDataTable(string sql)//creates DataTable visible
         {
             SqlConnection conn = new SqlConnection(Connecting);
@@ -19,6 +18,16 @@ namespace WebApplication1
             SqlDataAdapter tableAdapter = new SqlDataAdapter(sql,conn);
             tableAdapter.Fill(dt);
             return dt;
+        }
+
+        public static void DoQuery(string sql)//Executes Query
+        {
+            SqlConnection conn = new SqlConnection(Connecting);
+            conn.Open();
+            SqlCommand com = conn.CreateCommand();
+            com.CommandText = String.Format(sql);
+            com.ExecuteNonQuery();
+            conn.Close();
         }
     }
 }

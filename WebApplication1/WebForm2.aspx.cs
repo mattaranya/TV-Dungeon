@@ -19,15 +19,15 @@ namespace WebApplication1
         protected void Page_Load(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(Connect.Connecting);
+            Session["username"] = "";
+            Session["email"] = "";
             username = Request.Form["username"];
             password = Request.Form["password"];
-            cpassword = Request.Form["cpassword"];
             email = Request.Form["email"];
-            
             con.Open();
             if (Request.HttpMethod == "POST")
             {
-                message1 = MessageByData(username, password, cpassword, email, con);
+                message1 = MessageByData(username, email, con);
                 if (message1 == "")
                 {
                     AddUser(username, password, email, con);
@@ -46,17 +46,22 @@ namespace WebApplication1
             command.ExecuteNonQuery();
         }
 
-        private string MessageByData(string u, string p, string c, string e, SqlConnection sql)//Generates messages - depend the data
+        private string MessageByData(string u, string e, SqlConnection sql)//Generates messages - depend the data
         {
             if (DoesThisNameExists(u, sql))
                 return "Username's already exists";
-            else if (!EverythingsGood(u, p))
-                return "Password should be longer than 8 characters and not identicle to the username. Your Password don't follow all of these condidtions";
-            else if (p != c)
-                return "The Passwords don't match";
-            else if (!DoesAtExists(e))
-                return "E-Mail adress invalid";
-            return "";
+            else if (DoesThisNameExists(e, sql))
+                return "Email's alredt exists";
+            //else if (!EverythingsGood(u, p))
+            //return "Password should be longer than 8 characters and not identicle to the username. Your Password don't follow all of these condidtions";
+            //else if (p != c)
+            //return "The Passwords don't match";
+            // else if (!DoesAtExists(e))
+            //return "E-Mail adress invalid";
+            else {
+                return "";
+            }
+                 
         }
 
         private bool DoesThisNameExists(string u, SqlConnection sql)//finds existing usernames
@@ -68,8 +73,18 @@ namespace WebApplication1
             reader.Close();
             return output;
         }
+        private bool DoesThisEmailExists(string m, SqlConnection sql)//finds existing usernames
+        {
+            SqlCommand command = sql.CreateCommand();
+            command.CommandText = String.Format("SELECT Email FROM Users WHERE Email='{0}';", m);
+            SqlDataReader reader = command.ExecuteReader();
+            bool output = reader.Read();
+            reader.Close();
+            return output;
+        }
 
-        private bool DoesAtExists(string e)//locates '@'s
+
+        /*private bool DoesAtExists(string e)//locates '@'s
         {
             string copy = e;
             bool tbr = false;
@@ -88,7 +103,7 @@ namespace WebApplication1
                 return false;
             }
             return true;
-        }
+        }*/
 
     }
 }

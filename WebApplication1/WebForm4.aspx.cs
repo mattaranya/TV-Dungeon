@@ -5,11 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
-<<<<<<< HEAD
 using System.Data;
-//ddddd
-=======
->>>>>>> origin/master
 
 
 namespace WebApplication1
@@ -20,8 +16,7 @@ namespace WebApplication1
         public string Headline;
         public string Content;
         public string Tag;
-        public DateTime Time;
-
+        public string msg1 = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             currentUser = Session["username"].ToString();
@@ -32,45 +27,62 @@ namespace WebApplication1
                 Headline = Request.Form["headline"];
                 Content = Request.Form["postcontent"];
                 Tag = Request.Form["tags"];
-                Time = DateTime.Now;
-<<<<<<< HEAD
-                CreatePost(con, Headline, Time, Content, Tag);
-=======
-                if (!NoNullContent(Headline,Content,Tag))
+                if (NoNullContent(Headline,Content,Tag) && IsValidString(Headline) && IsValidString(Content))
                 {
-                    CreatePost(con, Headline, Time, Content, Tag);
+                    CreatePost(con, Headline, Content, Tag);
+                    Response.Redirect("WebForm3.aspx");
                 }
                 else
                 {
-                    Response.Write("One of the elements is missing. Fill it to continue");
+                    msg1 = "Something's missing...";
                 }
->>>>>>> origin/master
-            }
+            }  
             con.Close();
         }
 
-        private void CreatePost(SqlConnection con, string headline, DateTime dt, string content, string tag)
-        {
+        private void CreatePost(SqlConnection con, string headline, string content, string tag)
+        {  
             SqlCommand command = con.CreateCommand();
-            command.CommandText = String.Format("INSERT INTO Posts VALUES ('{0}','{1}', '{2}', '{3}','{4}');", dt, headline, content, currentUser, tag);
+            command.CommandText = String.Format("INSERT INTO Posts VALUES ('{0}','{1}', '{2}', '{3}','{4}');", DateTime.Now.ToString(), headline, content, currentUser, tag);
             command.ExecuteNonQuery();
         }
 
-<<<<<<< HEAD
-       /* private bool NoNullContent(string headline, string content, string tag)
-=======
         private bool NoNullContent(string headline, string content, string tag)
->>>>>>> origin/master
+
         {
-            if (headline==null || content==null || tag==null)
+            if (headline!=null && content!=null && tag!=null)
             {
                 return true;
             }
             return false;
-<<<<<<< HEAD
-        } */
-=======
+
+        } 
+
+        private bool IsValidString(string s)
+        {
+            bool help = true;
+            string badChars = "$%^&*()+=;'[]{}_|<>\\";
+            char quot = '\\';
+            for (int i = 0; i < s.Length; i++)
+            {
+                for (int j = 0; j < badChars.Length; j++)
+                {
+                    if (s[i]==badChars[j])
+                    {
+                        help = false;
+                        msg1 = "You used a bad char!";
+                    }
+                }
+                if (s[i]==quot)
+                {
+                    help = false;
+                    msg1 = "You used a bad char!";
+                }
+            }
+            
+            return help;
         }
->>>>>>> origin/master
+
+        }
+
     }
-}

@@ -1,0 +1,27 @@
+﻿body {
+    background-color:aqua;
+}
+h1{
+    text-align:center;
+    color:darkorchid;
+    font-family:'Comic Sans MS';
+    
+}
+h3{
+    text-align:center;
+    color:slateblue;
+    font-family:Garamond;
+}
+p{
+    text-align:center;
+    color:teal;
+    font-family:Arial;
+}
+a:hover{
+    color:seagreen;
+}
+div{
+    text-align:center;
+    color:blue;
+    font-family:SimSun;
+}

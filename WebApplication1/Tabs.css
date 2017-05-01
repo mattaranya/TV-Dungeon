@@ -3,10 +3,23 @@
     border: 1px solid #ccc;
     background-color: #f1f1f1;
 }
-
+h1{
+    text-align:center;
+    color:blue;
+    font-family:'Segoe Print';
+}
+div{
+    font-family:Corbel;
+    color:darkblue;
+}
+a:hover{
+    color:cadetblue;
+}
+body{
+    background-color:aliceblue;
+}
 /* Style the buttons inside the tab */
 form.tab button {
-    background-color: inherit;
     float: left;
     border: none;
     outline: none;
@@ -22,7 +35,7 @@ form.tab button:hover {
 
 /* Create an active/current tablink class */
 form.tab button.active {
-    background-color: #ccc;
+    background-color: #eee;
 }
 
 /* Style the tab content */
@@ -30,6 +43,43 @@ form.tab button.active {
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
+}
+h2.action {
+    color: red;
+    font-family: Arial;
+}
+
+h4.action {
+    color: crimson;
+}
+
+div.action {
+    color: firebrick;
+}
+h2.comedy {
+    color: darkorange;
+    font-family: Arial;
+}
+
+h4.comedy {
+    color: orangered;
+}
+
+div.comedy {
+    color: goldenrod;
+}
+
+h2.drama {
+    color: hotpink;
+    font-family: Arial;
+}
+
+h4.drama {
+    color: plum;
+}
+
+div.drama {
+    color: deeppink;
 }
 
 form.tab > button {

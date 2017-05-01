@@ -1,0 +1,25 @@
+﻿body {
+    background-color: antiquewhite;
+}
+
+h1 {
+    color: darkmagenta;
+    font-style: italic;
+    text-align: center;
+    font-family: Rod;
+}
+
+h3 {
+    font-family: Garamond;
+    color: darkcyan;
+}
+
+h4 {
+    font-family: 'Guttman Kav';
+    color: darkviolet;
+}
+
+div {
+    font-family: Arial;
+    color: darkblue;
+}
