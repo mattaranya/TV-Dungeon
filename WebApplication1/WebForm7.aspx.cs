@@ -12,7 +12,7 @@ namespace WebApplication1
     public partial class WebForm7 : System.Web.UI.Page
     {
         public string msg = "";
-        public string user = "", password = "", cpassword = "", email = "";
+        public string user = "", password = "", cpassword = "", email = "", date = "", headline = "", content = "", tag = "";
         public string st = "";
 
         protected void Page_Load(object sender, EventArgs e)
@@ -24,7 +24,7 @@ namespace WebApplication1
                 password = Request.Form["password"];
                 cpassword = Request.Form["cpassword"];
                 email = Request.Form["email"];
-                if (Request.Form["updateu"] != null && !DoesThisEmailExists(email, conn) && NoNullContent(password, cpassword, email))
+                if (Request.Form["updateu"] != null && !DoesThisEmailExists(email, conn) && OptimalPost(password, cpassword, email))
                 {
                     string sql = "UPDATE Users SET Password='" + password + "', Email='" + email + "' WHERE Username='" + Session["username"] + "'";
                     Connect.DoQuery(sql);
@@ -43,7 +43,7 @@ namespace WebApplication1
                     string headline = Request.Form["headline"];
                     string content = Request.Form["content"];
                     string tag = Request.Form["tags"];
-                    if (NoNullContent(headline,content,tag))
+                    if (OptimalPost(headline,content,tag))
                     {
                         string sql = "UPDATE Posts SET Tag='" + tag + "', Headline='" + headline + "', Content='" + content + "' WHERE Date='" + date + "'";
                         Connect.DoQuery(sql);
@@ -118,10 +118,10 @@ namespace WebApplication1
             reader.Close();
             return output;
         }
-        private bool NoNullContent(string headline, string content, string tag)
+        private bool OptimalPost(string headline, string content, string tag)
 
         {
-            if (headline == null || content == null || tag == null)
+            if (headline != null && content != null && tag != null)
             {
                 return true;
             }

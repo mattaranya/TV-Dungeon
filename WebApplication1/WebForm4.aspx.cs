@@ -22,11 +22,11 @@ namespace WebApplication1
             currentUser = Session["username"].ToString();
             SqlConnection con = new SqlConnection(Connect.Connecting);
             con.Open();
+            Headline = Request.Form["headline"];
+            Content = Request.Form["postcontent"];
+            Tag = Request.Form["tags"];
             if (Request.HttpMethod == "POST")
             {
-                Headline = Request.Form["headline"];
-                Content = Request.Form["postcontent"];
-                Tag = Request.Form["tags"];
                 if (NoNullContent(Headline,Content,Tag) && IsValidString(Headline) && IsValidString(Content))
                 {
                     CreatePost(con, Headline, Content, Tag);
